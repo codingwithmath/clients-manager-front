@@ -21,6 +21,7 @@ function Form({ onSubmit, clientInfo }: IFormProps) {
     e.preventDefault();
 
     await onSubmit({
+      id: clientInfo ? clientInfo.id : undefined,
       name: name as unknown as string,
       birthDate: birthDate as unknown as string,
       rg: rg as unknown as string,
