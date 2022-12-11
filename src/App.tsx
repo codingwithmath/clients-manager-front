@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
 import "./App.css";
+
+import { useEffect, useState } from "react";
 import AddressForm from "./components/AddressForm";
 import Card from "./components/Card";
 import Form from "./components/Form";
@@ -43,6 +44,14 @@ function App() {
     setClients([...clients, response.data]);
   }
 
+  async function handleUpdateFormSubmit(data: IClient) {
+    await api.put(`/client/${data.id}`, data);
+
+    await loadClients();
+
+    setOpenModal(false);
+  }
+
   async function onDelete(id: number) {
     await api.delete(`/client/${id}`);
 
@@ -80,6 +89,7 @@ function App() {
           <UpdateFormModal
             closeModal={onClickCloseModal}
             client={currentClientModal as unknown as IClient}
+            handleSubmit={handleUpdateFormSubmit}
           />
         )}
       </main>

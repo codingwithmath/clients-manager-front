@@ -7,14 +7,10 @@ import api from "../../services/api";
 interface IModalProps {
   closeModal: () => void;
   client: IClient;
+  handleSubmit: (data: IClient) => Promise<void>;
 }
 
-async function handleSubmit(data: IClient) {
-  //const response = await api.post("/clients", data);
-  console.log(`submiting`);
-}
-
-const UpdateFormModal = ({ closeModal, client }: IModalProps) => {
+const UpdateFormModal = ({ closeModal, client, handleSubmit }: IModalProps) => {
   return (
     <>
       <div className="darkBG" onClick={() => closeModal()} />
